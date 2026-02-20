@@ -1,7 +1,7 @@
 -- Use the SQL Editor in Supabase to run this script
 
 -- Create the Farmers table
-CREATE TABLE farmers (
+CREATE TABLE IF NOT EXISTS farmers (
     id SERIAL PRIMARY KEY,
     mobile TEXT UNIQUE NOT NULL,
     name TEXT,
@@ -12,7 +12,7 @@ CREATE TABLE farmers (
 );
 
 -- Create the Fields table
-CREATE TABLE fields (
+CREATE TABLE IF NOT EXISTS fields (
     id SERIAL PRIMARY KEY,
     farmer_id INTEGER REFERENCES farmers(id) ON DELETE CASCADE,
     location TEXT,
@@ -24,10 +24,22 @@ CREATE TABLE fields (
 );
 
 -- Create the Recommendations table
-CREATE TABLE recommendations (
+CREATE TABLE IF NOT EXISTS recommendations (
     id SERIAL PRIMARY KEY,
     farmer_id INTEGER REFERENCES farmers(id) ON DELETE CASCADE,
     field_id INTEGER REFERENCES fields(id) ON DELETE CASCADE,
     recommendation_json JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Create Bookings table 
+CREATE TABLE IF NOT EXISTS bookings (
+    id SERIAL PRIMARY KEY,
+    farmer_id INTEGER REFERENCES farmers(id) ON DELETE CASCADE,
+    fertilizer_name TEXT NOT NULL,
+    quantity_kg FLOAT NOT NULL,
+    total_price FLOAT NOT NULL,
+    status TEXT DEFAULT 'Pending',
+    delivery_address TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );

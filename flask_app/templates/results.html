@@ -78,6 +78,26 @@
                     No chemical fertilizers needed at this stage!
                 </div>
                 {% endif %}
+
+                <!-- Shop Finding Link -->
+                <div
+                    class="mt-6 flex flex-col md:flex-row justify-between items-center bg-blue-50 p-4 rounded-xl border border-blue-100 gap-4">
+                    <div>
+                        <p class="font-bold text-blue-900">Need to buy these inputs?</p>
+                        <p class="text-sm text-blue-700" id="results-location-status">Find physical shops near you, or
+                            book delivery online.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button onclick="getNearbyShops()"
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold shadow-sm transition-colors flex items-center gap-2">
+                            <span>🔍</span> Locate Stores
+                        </button>
+                        <a href="{{ url_for('book_fertilizers') }}"
+                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-bold shadow-sm transition-colors flex items-center gap-2">
+                            <span>🛒</span> Book Online
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <!-- Notes & Advice -->
@@ -106,20 +126,32 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-900">Stage</th>
-                                <th class="px-4 py-3 text-left font-semibold text-gray-900">Application Window</th>
+                                <th class="px-4 py-3 text-left font-semibold text-gray-900">Days After Sowing</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-900">Urea</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-900">DAP</th>
                                 <th class="px-4 py-3 text-left font-semibold text-gray-900">MOP</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 bg-white">
-                            {% for stage in recommendation.stage_schedule %}
+                            {% for stage in recommendation.stage_schedule.stages %}
                             <tr>
-                                <td class="px-4 py-3 font-medium text-gray-900">{{ stage.stage }}</td>
-                                <td class="px-4 py-3 text-gray-500">{{ stage.days_from_sowing }}</td>
-                                <td class="px-4 py-3 text-gray-700">{{ stage.fertilizers.Urea }}</td>
-                                <td class="px-4 py-3 text-gray-700">{{ stage.fertilizers.DAP }}</td>
-                                <td class="px-4 py-3 text-gray-700">{{ stage.fertilizers.MOP }}</td>
+                                <td class="px-4 py-3 font-medium text-gray-900">{{ stage.stage_name }}</td>
+                                <td class="px-4 py-3 text-gray-500">{{ stage.days_after_sowing }}</td>
+                                <td class="px-4 py-3 text-gray-700">
+                                    {% for f in stage.fertilizers %}
+                                    {% if f.nutrient == "N" %}{{ f.amount_kg }} kg{% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="px-4 py-3 text-gray-700">
+                                    {% for f in stage.fertilizers %}
+                                    {% if f.nutrient == "P" %}{{ f.amount_kg }} kg{% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="px-4 py-3 text-gray-700">
+                                    {% for f in stage.fertilizers %}
+                                    {% if f.nutrient == "K" %}{{ f.amount_kg }} kg{% endif %}
+                                    {% endfor %}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -191,4 +223,29 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function getNearbyShops() {
+        const status = document.getElementById('results-location-status');
+        status.innerText = "Requesting real-time location...";
+
+        if (!navigator.geolocation) {
+            status.innerText = "Geolocation not supported.";
+            window.open(`https://www.google.com/maps/search/fertilizer+shop+in+{{ recommendation.mandal }},+{{ recommendation.district }}`, '_blank');
+        } else {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                status.innerText = "Found you! Opening map...";
+                setTimeout(() => status.innerText = "", 3000);
+                window.open(`https://www.google.com/maps/search/fertilizer+shop/@${lat},${lon},13z`, '_blank');
+            }, () => {
+                status.innerText = "Location access denied. Using district/mandal instead.";
+                window.open(`https://www.google.com/maps/search/fertilizer+shop+in+{{ recommendation.mandal }},+{{ recommendation.district }}`, '_blank');
+            });
+        }
+    }
+</script>
 {% endblock %}

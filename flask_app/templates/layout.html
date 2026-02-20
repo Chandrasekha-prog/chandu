@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,15 +38,18 @@
         .input-field {
             @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all dark:bg-gray-800 dark:border-gray-700 dark:text-white;
         }
+
         .btn-primary {
             @apply w-full px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 transition-all shadow-md;
         }
+
         .card {
             @apply bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 border border-gray-100 dark:border-gray-700;
         }
     </style>
     {% block head %}{% endblock %}
 </head>
+
 <body class="bg-gray-50 text-gray-900 font-sans antialiased min-h-screen">
     {% set farmer = session.get('farmer') %}
     {% if farmer %}
@@ -61,7 +65,8 @@
                 </div>
                 <div class="flex gap-4 items-center">
                     <span class="text-sm px-4 py-2 rounded-lg font-medium">👤 {{ farmer.name }}</span>
-                    <a href="{{ url_for('logout') }}" class="text-sm bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition-colors shadow-md">Logout</a>
+                    <a href="{{ url_for('logout') }}"
+                        class="text-sm bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg transition-colors shadow-md">Logout</a>
                 </div>
             </div>
         </div>
@@ -70,18 +75,52 @@
 
     <main class="{% if not request.path == '/' %}container mx-auto px-4 py-8{% endif %}">
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="mb-4 p-4 rounded-lg shadow {{ 'bg-red-100 text-red-700 border border-red-200' if category == 'error' else 'bg-green-100 text-green-700 border border-green-200' }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div
+            class="mb-4 p-4 rounded-lg shadow {{ 'bg-red-100 text-red-700 border border-red-200' if category == 'error' else 'bg-green-100 text-green-700 border border-green-200' }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
         {% endwith %}
 
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Floating Translation Widget -->
+    <div id="google_translate_element"
+        class="fixed bottom-4 right-4 z-[9999] shadow-2xl rounded-lg overflow-hidden bg-white px-2 py-1 border border-gray-200">
+    </div>
+
+    <style>
+        /* Hide the annoying Google Translate top bar */
+        body {
+            top: 0 !important;
+        }
+
+        .skiptranslate iframe {
+            display: none !important;
+        }
+
+        #google_translate_element select {
+            @apply bg-white text-gray-800 text-sm rounded-md border-0 py-1 cursor-pointer font-bold;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te,hi', // English, Telugu, Hindi
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     {% block scripts %}{% endblock %}
 </body>
+
 </html>

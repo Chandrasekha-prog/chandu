@@ -157,6 +157,81 @@ def results():
         
     return render_template("results.html", recommendation=rec_data, farmer=session["farmer"])
 
+@app.route("/disease-detection")
+def disease_detection():
+    if "farmer" not in session:
+        return redirect(url_for("index"))
+    return render_template("disease_vision.html", farmer=session["farmer"])
+
+@app.route("/api/disease-detection", methods=["POST"])
+def api_disease_detection():
+    if 'image' not in request.files:
+        return jsonify({"success": False, "error": "No image uploaded"}), 400
+        
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({"success": False, "error": "No selected file"}), 400
+        
+    import tempfile
+    import werkzeug.utils
+    from disease_service import analyze_plant_disease
+    
+    filename = werkzeug.utils.secure_filename(file.filename)
+    # Save the file temporarily
+    temp_dir = tempfile.gettempdir()
+    filepath = os.path.join(temp_dir, filename)
+    file.save(filepath)
+    
+    # Process using Gemini
+    result = analyze_plant_disease(filepath)
+    
+    # Cleanup temp file
+    if os.path.exists(filepath):
+        try:
+            os.remove(filepath)
+        except:
+            pass
+            
+    return jsonify(result)
+
+@app.route("/book", methods=["GET", "POST"])
+def book_fertilizers():
+    if "farmer" not in session:
+        return redirect(url_for("index"))
+        
+    farmer = session["farmer"]
+    
+    if request.method == "POST":
+        fertilizer = request.form.get("fertilizer")
+        quantity = float(request.form.get("quantity", 0))
+        total_price = float(request.form.get("total_price", 0))
+        delivery_address = request.form.get("delivery_address")
+        payment_status = request.form.get("payment_status", "Pending")
+        
+        try:
+            booking_data = {
+                "farmer_id": farmer["id"],
+                "fertilizer_name": fertilizer,
+                "quantity_kg": quantity,
+                "total_price": total_price,
+                "delivery_address": delivery_address,
+                "status": payment_status
+            }
+            supabase.table("bookings").insert(booking_data).execute()
+        except Exception as e:
+            print(f"Error booking: {e}")
+            
+        return redirect(url_for("book_fertilizers"))
+
+    bookings = []
+    try:
+        book_res = supabase.table("bookings").select("*").eq("farmer_id", farmer["id"]).order("created_at", desc=True).limit(20).execute()
+        bookings = book_res.data
+    except Exception as e:
+        print(f"Error fetching bookings: {e}")
+        
+    return render_template("booking.html", farmer=farmer, bookings=bookings)
+
 @app.route("/api/weather")
 def api_weather():
     district = request.args.get("district")

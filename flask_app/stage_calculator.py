@@ -4,7 +4,7 @@ Calculates fertilizer application schedule across different growth stages.
 """
 
 from datetime import datetime, timedelta
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any
 
 # Crop growth stage definitions (days after sowing)
 CROP_STAGES = {

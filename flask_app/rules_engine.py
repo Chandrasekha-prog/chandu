@@ -1,8 +1,7 @@
 import json
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Dict, List, Optional
-from database import supabase
 from weather_service import get_current_weather, get_weather_forecast, analyze_weather_for_fertilizer
 from stage_calculator import calculate_stage_schedule
 
