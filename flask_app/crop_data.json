@@ -1,0 +1,513 @@
+{
+  "crops": {
+    "వరి": {
+      "english_name": "Rice",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            30
+          ],
+          "description": "Tillering stage",
+          "water_requirement": "Maintain 2-5 cm standing water. Critical stage."
+        },
+        "flowering": {
+          "days": [
+            31,
+            60
+          ],
+          "description": "Panicle initiation to flowering",
+          "water_requirement": "Maintain 5 cm standing water. Most Critical Stage."
+        },
+        "ripening": {
+          "days": [
+            61,
+            120
+          ],
+          "description": "Grain filling to maturity"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 60,
+          "P": 30,
+          "K": 30
+        },
+        "flowering": {
+          "N": 40,
+          "P": 20,
+          "K": 20
+        },
+        "ripening": {
+          "N": 20,
+          "P": 10,
+          "K": 30
+        }
+      }
+    },
+    "ప్రత్తి": {
+      "english_name": "Cotton",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            45
+          ],
+          "description": "Seedling to square formation",
+          "water_requirement": "Irrigate at 20-25 days interval. Moisture crucial for germination."
+        },
+        "flowering": {
+          "days": [
+            46,
+            90
+          ],
+          "description": "Flowering and boll formation",
+          "water_requirement": "Irrigate at 10-15 days interval. Critical for boll retention."
+        },
+        "ripening": {
+          "days": [
+            91,
+            180
+          ],
+          "description": "Boll development to maturity"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 50,
+          "P": 25,
+          "K": 25
+        },
+        "flowering": {
+          "N": 40,
+          "P": 20,
+          "K": 40
+        },
+        "ripening": {
+          "N": 20,
+          "P": 10,
+          "K": 35
+        }
+      }
+    },
+    "మిరప": {
+      "english_name": "Chilli",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            40
+          ],
+          "description": "Seedling to flowering"
+        },
+        "flowering": {
+          "days": [
+            41,
+            80
+          ],
+          "description": "Flowering and fruit set"
+        },
+        "ripening": {
+          "days": [
+            81,
+            150
+          ],
+          "description": "Fruit development to harvest"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 40,
+          "P": 20,
+          "K": 20
+        },
+        "flowering": {
+          "N": 30,
+          "P": 15,
+          "K": 30
+        },
+        "ripening": {
+          "N": 20,
+          "P": 10,
+          "K": 40
+        }
+      }
+    },
+    "మామిడి": {
+      "english_name": "Mango",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            60
+          ],
+          "description": "Vegetative growth"
+        },
+        "flowering": {
+          "days": [
+            61,
+            120
+          ],
+          "description": "Flowering"
+        },
+        "ripening": {
+          "days": [
+            121,
+            180
+          ],
+          "description": "Fruit development"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 50,
+          "P": 25,
+          "K": 50
+        },
+        "flowering": {
+          "N": 30,
+          "P": 30,
+          "K": 60
+        },
+        "ripening": {
+          "N": 20,
+          "P": 20,
+          "K": 70
+        }
+      }
+    },
+    "మొక్కజొన్న": {
+      "english_name": "Maize",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            30
+          ],
+          "description": "Seedling to knee-high stage"
+        },
+        "flowering": {
+          "days": [
+            31,
+            60
+          ],
+          "description": "Tasseling and silking"
+        },
+        "ripening": {
+          "days": [
+            61,
+            100
+          ],
+          "description": "Cob formation to maturity"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 50,
+          "P": 25,
+          "K": 20
+        },
+        "flowering": {
+          "N": 40,
+          "P": 20,
+          "K": 20
+        },
+        "ripening": {
+          "N": 30,
+          "P": 15,
+          "K": 20
+        }
+      }
+    },
+    "వేరుశనగ": {
+      "english_name": "Groundnut",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            25
+          ],
+          "description": "Seedling to flowering"
+        },
+        "flowering": {
+          "days": [
+            26,
+            60
+          ],
+          "description": "Peg penetration and pod formation"
+        },
+        "ripening": {
+          "days": [
+            61,
+            105
+          ],
+          "description": "Pod development to maturity"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 20,
+          "P": 40,
+          "K": 30
+        },
+        "flowering": {
+          "N": 10,
+          "P": 20,
+          "K": 20
+        },
+        "ripening": {
+          "N": 0,
+          "P": 0,
+          "K": 0
+        }
+      }
+    },
+    "మినుము": {
+      "english_name": "Blackgram",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            25
+          ],
+          "description": "Vegetative growth"
+        },
+        "flowering": {
+          "days": [
+            26,
+            50
+          ],
+          "description": "Flowering and pod initiation"
+        },
+        "ripening": {
+          "days": [
+            51,
+            80
+          ],
+          "description": "Pod development and maturity"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 10,
+          "P": 30,
+          "K": 0
+        },
+        "flowering": {
+          "N": 10,
+          "P": 10,
+          "K": 0
+        },
+        "ripening": {
+          "N": 0,
+          "P": 0,
+          "K": 0
+        }
+      }
+    },
+    "పెసర": {
+      "english_name": "Green Gram",
+      "growth_stages": {
+        "vegetative": {
+          "days": [
+            0,
+            25
+          ],
+          "description": "Vegetative growth"
+        },
+        "flowering": {
+          "days": [
+            26,
+            45
+          ],
+          "description": "Flowering"
+        },
+        "ripening": {
+          "days": [
+            46,
+            70
+          ],
+          "description": "Pod maturity"
+        }
+      },
+      "nutrient_requirements": {
+        "vegetative": {
+          "N": 10,
+          "P": 30,
+          "K": 0
+        },
+        "flowering": {
+          "N": 10,
+          "P": 10,
+          "K": 0
+        },
+        "ripening": {
+          "N": 0,
+          "P": 0,
+          "K": 0
+        }
+      }
+    }
+  },
+  "fertilizer_types": {
+    "Urea": {
+      "telugu_name": "యూరియా",
+      "nutrient": "N",
+      "percentage": 46,
+      "price_per_kg": 6,
+      "bag_weight": 45
+    },
+    "DAP": {
+      "telugu_name": "డి.ఎ.పి",
+      "nutrient": "P",
+      "percentage": 46,
+      "price_per_kg": 27,
+      "bag_weight": 50
+    },
+    "MOP": {
+      "telugu_name": "ఎం.ఓ.పి",
+      "nutrient": "K",
+      "percentage": 60,
+      "price_per_kg": 32,
+      "bag_weight": 50
+    },
+    "SSP": {
+      "telugu_name": "ఎస.ఎస.పి",
+      "nutrient": "P",
+      "percentage": 16,
+      "price_per_kg": 10,
+      "bag_weight": 50
+    }
+  },
+  "soil_thresholds": {
+    "N": {
+      "low": 280,
+      "medium": 560,
+      "high": 840
+    },
+    "P": {
+      "low": 11,
+      "medium": 22,
+      "high": 56
+    },
+    "K": {
+      "low": 108,
+      "medium": 280,
+      "high": 560
+    }
+  },
+  "soil_types": {
+    "sandy": {
+      "name": "Sandy Soil",
+      "telugu_name": "ఇసుక నేల",
+      "retention": "low",
+      "advice": "Irrigate frequently with less water (Light & Frequent)."
+    },
+    "clay": {
+      "name": "Clay/Black Cotton Soil",
+      "telugu_name": "నల్లరేగడి నేల",
+      "retention": "high",
+      "advice": "Irrigate less frequently but with more water. Ensure drainage."
+    },
+    "red": {
+      "name": "Red Soil",
+      "telugu_name": "ఎర్ర నేల",
+      "retention": "medium",
+      "advice": "Moderate irrigation frequency."
+    },
+    "loam": {
+      "name": "Loamy Soil",
+      "telugu_name": "ఒండ్రు నేల",
+      "retention": "ideal",
+      "advice": "Standard irrigation practices."
+    }
+  },
+  "organic_options": {
+    "manures": [
+      {
+        "name": "Farm Yard Manure (FYM)",
+        "telugu_name": "పశువుల ఎరువు",
+        "rate_per_acre": "6-8 tons",
+        "timing": "Before last ploughing",
+        "description": "Improves soil structure and water holding capacity"
+      },
+      {
+        "name": "Vermicompost",
+        "telugu_name": "వర్మీ కంపోస్ట్",
+        "rate_per_acre": "1-2 tons",
+        "timing": "At sowing/planting based on crop",
+        "description": "Rich in beneficial microbes and nutrients"
+      }
+    ],
+    "bio_fertilizers": [
+      {
+        "name": "Rhizobium",
+        "telugu_name": "రైజోబియం",
+        "crops": [
+          "Groundnut",
+          "Blackgram",
+          "Green Gram",
+          "Soybean",
+          "Bengal Gram"
+        ],
+        "rate_per_acre": "2 kg (seed treatment) or 5kg (soil application)",
+        "description": "Fixes atmospheric nitrogen for legume crops"
+      },
+      {
+        "name": "Azospirillum",
+        "telugu_name": "అజోస్పిరిల్లమ్",
+        "crops": [
+          "Rice",
+          "Maize",
+          "Sorghum",
+          "Pearl Millet",
+          "Sugarcane"
+        ],
+        "rate_per_acre": "2-5 kg",
+        "description": "Promotes root growth and yields in non-legume crops"
+      },
+      {
+        "name": "Azotobacter",
+        "telugu_name": "అజోటోబాక్టెర్",
+        "crops": [
+          "Cotton",
+          "Chilli",
+          "Tomato",
+          "Brinjal",
+          "Mustard"
+        ],
+        "rate_per_acre": "2-5 kg",
+        "description": "Non-symbiotic nitrogen fixing bacteria"
+      },
+      {
+        "name": "PSB (Phosphate Solubilizing Bacteria)",
+        "telugu_name": "ఫాస్ఫేట్ గురించి బ్యాక్టీరియా",
+        "crops": [
+          "All Crops"
+        ],
+        "rate_per_acre": "2-5 kg",
+        "description": "Solubilizes insoluble phosphorus in soil"
+      }
+    ],
+    "green_manures": [
+      {
+        "name": "Dhaincha (Jeeluga)",
+        "telugu_name": "జీలుగ",
+        "season": "Kharif (Early)",
+        "description": "Suitable for heavy soils, tolerates salinity/alkalinity"
+      },
+      {
+        "name": "Sunnhemp (Janumu)",
+        "telugu_name": "జనుము",
+        "season": "All seasons",
+        "description": "Fast growing, good for light soils"
+      },
+      {
+        "name": "Pillipesara",
+        "telugu_name": "పిల్లిపెసర",
+        "season": "Rabi/Summer",
+        "description": "Suitable for rice fallows"
+      }
+    ]
+  }
+}

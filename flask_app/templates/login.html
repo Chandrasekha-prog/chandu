@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div
+    class="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <div
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 max-w-md w-full border border-gray-100 dark:border-gray-700">
+
+        <div class="text-center mb-8">
+            <div class="text-4xl mb-2">🌾</div>
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Krish-e-Mitra</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">AI-Enabled Precision Fertilizer Advisory System</p>
+        </div>
+
+        <div class="flex gap-2 mb-6 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
+            <button onclick="switchTab('login')" id="tab-login"
+                class="flex-1 py-2.5 px-4 rounded-md font-semibold transition-all bg-white text-primary-600 shadow-sm">Login</button>
+            <button onclick="switchTab('signup')" id="tab-signup"
+                class="flex-1 py-2.5 px-4 rounded-md font-semibold transition-all text-gray-600 hover:text-gray-800">Sign
+                Up</button>
+        </div>
+
+        <div id="error-msg"
+            class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 text-center"></div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="space-y-4" onsubmit="handleLogin(event)">
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Mobile Number</label>
+                <input type="tel" id="login-mobile" pattern="\d{10}" placeholder="Enter 10-digit mobile number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+            </div>
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">OTP</label>
+                <input type="text" id="login-otp" placeholder="Enter OTP (Dev OTP: 123456)"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+                <p class="text-sm text-gray-500 mt-1">Dev OTP: 123456</p>
+            </div>
+            <button type="submit" id="login-btn"
+                class="w-full px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 transition-all shadow-md mt-4">Login</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="space-y-4 hidden" onsubmit="handleSignup(event)">
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Name</label>
+                <input type="text" id="signup-name" placeholder="Enter full name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+            </div>
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Mobile Number</label>
+                <input type="tel" id="signup-mobile" pattern="\d{10}" placeholder="Enter 10-digit mobile number"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+            </div>
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">District</label>
+                <input type="text" id="signup-district" placeholder="Enter district"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+            </div>
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Mandal</label>
+                <input type="text" id="signup-mandal" placeholder="Enter mandal"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+            </div>
+            <div>
+                <label class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">OTP</label>
+                <input type="text" id="signup-otp" placeholder="Enter OTP (Dev OTP: 123456)"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                    required>
+            </div>
+            <button type="submit" id="signup-btn"
+                class="w-full px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 transition-all shadow-md mt-4">Create
+                Account</button>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function switchTab(tab) {
+        document.getElementById('error-msg').classList.add('hidden');
+        if (tab === 'login') {
+            document.getElementById('login-form').classList.remove('hidden');
+            document.getElementById('signup-form').classList.add('hidden');
+
+            document.getElementById('tab-login').classList.add('bg-white', 'text-primary-600', 'shadow-sm');
+            document.getElementById('tab-login').classList.remove('text-gray-600');
+
+            document.getElementById('tab-signup').classList.remove('bg-white', 'text-primary-600', 'shadow-sm');
+            document.getElementById('tab-signup').classList.add('text-gray-600');
+        } else {
+            document.getElementById('signup-form').classList.remove('hidden');
+            document.getElementById('login-form').classList.add('hidden');
+
+            document.getElementById('tab-signup').classList.add('bg-white', 'text-primary-600', 'shadow-sm');
+            document.getElementById('tab-signup').classList.remove('text-gray-600');
+
+            document.getElementById('tab-login').classList.remove('bg-white', 'text-primary-600', 'shadow-sm');
+            document.getElementById('tab-login').classList.add('text-gray-600');
+        }
+    }
+
+    function showError(msg) {
+        const errDiv = document.getElementById('error-msg');
+        errDiv.innerText = msg;
+        errDiv.classList.remove('hidden');
+    }
+
+    async function handleLogin(e) {
+        e.preventDefault();
+        const btn = document.getElementById('login-btn');
+        btn.innerText = "Loading...";
+        btn.disabled = true;
+
+        const mobile = document.getElementById('login-mobile').value;
+        const otp = document.getElementById('login-otp').value;
+
+        const formData = new FormData();
+        formData.append("mobile", mobile);
+        formData.append("otp", otp);
+
+        try {
+            const res = await fetch("{{ url_for('login') }}", {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+            if (data.success) {
+                window.location.href = "{{ url_for('dashboard') }}";
+            } else {
+                showError(data.message);
+            }
+        } catch (err) {
+            showError("An error occurred during login.");
+        } finally {
+            btn.innerText = "Login";
+            btn.disabled = false;
+        }
+    }
+
+    async function handleSignup(e) {
+        e.preventDefault();
+        const btn = document.getElementById('signup-btn');
+        btn.innerText = "Loading...";
+        btn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("name", document.getElementById('signup-name').value);
+        formData.append("mobile", document.getElementById('signup-mobile').value);
+        formData.append("district", document.getElementById('signup-district').value);
+        formData.append("mandal", document.getElementById('signup-mandal').value);
+        formData.append("otp", document.getElementById('signup-otp').value);
+
+        try {
+            const res = await fetch("{{ url_for('signup') }}", {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+            if (data.success) {
+                window.location.href = "{{ url_for('dashboard') }}";
+            } else {
+                showError(data.message);
+            }
+        } catch (err) {
+            showError("An error occurred during registration.");
+        } finally {
+            btn.innerText = "Create Account";
+            btn.disabled = false;
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+-- Use the SQL Editor in Supabase to run this script
+
+-- Create the Farmers table
+CREATE TABLE farmers (
+    id SERIAL PRIMARY KEY,
+    mobile TEXT UNIQUE NOT NULL,
+    name TEXT,
+    district TEXT,
+    mandal TEXT,
+    language_preference TEXT DEFAULT 'en',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Create the Fields table
+CREATE TABLE fields (
+    id SERIAL PRIMARY KEY,
+    farmer_id INTEGER REFERENCES farmers(id) ON DELETE CASCADE,
+    location TEXT,
+    crop_type TEXT,
+    variety TEXT,
+    sowing_date DATE,
+    area_sown FLOAT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Create the Recommendations table
+CREATE TABLE recommendations (
+    id SERIAL PRIMARY KEY,
+    farmer_id INTEGER REFERENCES farmers(id) ON DELETE CASCADE,
+    field_id INTEGER REFERENCES fields(id) ON DELETE CASCADE,
+    recommendation_json JSONB,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
